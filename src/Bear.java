@@ -9,15 +9,15 @@ public class Bear extends GameObject {
 
     @Override
     protected void move() {
-        System.out.println("a:왼쪽으로\ns:위로\nd:아래로\nf:오른쪽으로\n>>");
+        System.out.println("a:left\ns:up\nd:down\nf:right\n>>");
         char c = sc.next().charAt(0);
         switch (c) {
             case 'a':
                 x-=1;
-                if(x<0) x=0; break;
+                if(x<=0) x=0; break;
             case 's':
                 y-=1;
-                if(y<0) y=0; break;
+                if(y<=0) y=0; break;
             case 'd':
                 y+=1;
                 if(y>=Gamee.h) y=Gamee.h-1; break;
@@ -29,6 +29,6 @@ public class Bear extends GameObject {
 
     @Override
     protected char getShape() {
-        return 'ʕ';
+        return 'B';
     }
 }

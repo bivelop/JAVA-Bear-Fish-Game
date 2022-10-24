@@ -8,8 +8,8 @@ public class Gamee {
 
 
     public Gamee() {
-        for (int i = 0; i < h; i++) {       //처음 set
-            for (int j = 0; j < w; j++) {
+        for (int i = 0; i < lake.length; i++) {       //initial set
+            for (int j = 0; j < lake[i].length; j++) {
                 lake[i][j] = '-';
             }
         }
@@ -18,9 +18,9 @@ public class Gamee {
     }
 
 
-    private void set(Bear BB, Fish FF) {    //베어, 피쉬 위치 설정하고 호수 배열 set
-        for (int i = 0; i < h; i++) {
-            for (int j = 0; j < w; j++) {
+    private void set(Bear BB, Fish FF) {    //set B&$ on lake array
+        for (int i = 0; i < lake.length; i++) {
+            for (int j = 0; j < lake[i].length; j++) {
                 lake[i][j] = '-';
                 if(i==FF.getY() && j==FF.getX()) {
                     lake[i][j]=FF.getShape();
@@ -33,37 +33,37 @@ public class Gamee {
     }
 
 
-    public void draw() {       //호수 그리기
+    public void draw() {       //draw lake array
         System.out.println();
-        for (int i = 0; i < h; i++) {
-            for (int j = 0; j < w; j++) {
+        for (int i = 0; i < lake.length; i++) {
+            for (int j = 0; j < lake[i].length; j++) {
                 System.out.print(lake[i][j]);
             }
             System.out.println();
         }
     }
 
-    public void run() {       //게임 start
-        System.out.println("** Bear의 Fish 먹기 게임을 시작합니다.**");
+    public void run() {       // start
+        System.out.println("** Bear & Fish Game Start **");
 
         set(BB,FF);
         draw();
 
         int[] randarr = new int[2];
 
-        while (!BB.collide(FF)) {         //베어와 피쉬의 좌표가 같아질때까지
+        while (!BB.collide(FF)) {         //while ~ B(x,y)=$(x,y)
 
-            for(int n=0; n<2; n++) {          //다섯번 중 피쉬가 이동할 두번의 순서 배열 정하기
-                int rand = (int) (Math.random() * 4);
+            for(int n=0; n<2; n++) {       // FF.move() Run Twice Out Of 5 Times Randomly
+                int rand = (int) (Math.random() * 4);  //rand=0~5
                 randarr[n]=rand;
                 for (int j = 0; j < n; j++) {
-                    if (randarr[n] == randarr[j]) {
+                    if (randarr[n] == randarr[j]) {    //randarr means when FF.move() run
                         n--;
                     }
                 }
             }
 
-            for (int i=0; i<5; i++) {          //다섯번 실행 - 랜덤으로 정한 두번의 차례엔 피쉬 이동
+            for (int i=0; i<5; i++) {
                 BB.move();
                 for (int j = 0; j < 2; j++) {
                     if (i == randarr[j])
@@ -71,7 +71,7 @@ public class Gamee {
                 }
                 set(BB,FF);
                 draw();
-                System.out.println("Bear : ("+BB.getX()+","+BB.getY()+")  Fish : ("+FF.getX()+","+FF.getY()+")");
+                //System.out.println("Bear : ("+BB.getX()+","+BB.getY()+")  Fish : ("+FF.getX()+","+FF.getY()+")");
             }
         }
         System.out.println("win");

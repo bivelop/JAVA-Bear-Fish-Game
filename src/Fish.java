@@ -14,7 +14,7 @@ public class Fish extends GameObject {
                 break;
             case 1:
                 x -= distance;
-                if (x < 0) x = 0;
+                if (x <= 0) x = 0;
                 break;
             case 2:
                 y += distance;
@@ -22,7 +22,7 @@ public class Fish extends GameObject {
                 break;
             case 3:
                 y -= distance;
-                if (y < 0) y = 0;
+                if (y <= 0) y = 0;
                 break;
         }
     }
